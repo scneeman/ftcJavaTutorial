@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTC Java Foundations: Stages 1-3</title>
+    <!-- CryptoJS MD5 Library for Answer Obfuscation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #1e1e2e;
+            --card-bg: #2b2b3b;
+            --text-color: #cdd6f4;
+            --accent-color: #89b4fa;
+            --success-color: #a6e3a1;
+            --warning-color: #f9e2af;
+            --error-color: #f38ba8;
+            --code-bg: #181825;
+            
+            /* IDE Syntax Colors */
+            --syn-keyword: #cf9fff;   /* Reserved keywords (public, class, double) */
+            --syn-type: #4682b4;      /* Object Types (DcMotor, Servo, HardwareMap) */
+            --syn-string: #a6e3a1;    /* String literals ("left_drive") */
+            --syn-number: #fab387;    /* Numbers (0.75, 1440) */
+            --syn-comment: #6c7086;   /* Comments */
+            --syn-anno: #f9e2af;      /* Annotations (@TeleOp, @Override) */
+            --syn-var: #89dceb;       /* Variable names */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--accent-color);
+        }
+
+        .stage-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        /* IDE Code Block Styling */
+        pre {
+            background-color: var(--code-bg);
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+            border-left: 4px solid var(--accent-color);
+            font-family: 'Consolas', 'Fira Code', 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        code { font-family: inherit; }
+
+        /* Syntax Classes */
+        .kwd { color: var(--syn-keyword); font-weight: bold; }
+        .typ { color: var(--syn-type); font-weight: bold; }
+        .str { color: var(--syn-string); }
+        .num { color: var(--syn-number); }
+        .com { color: var(--syn-comment); font-style: italic; }
+        .ann { color: var(--syn-anno); font-weight: bold; }
+        .vrb { color: var(--syn-var); }
+
+        .quiz-container {
+            margin-top: 25px;
+            background-color: rgba(0, 0, 0, 0.25);
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #45475a;
+        }
+
+        .options label {
+            display: block;
+            margin: 8px 0;
+            padding: 10px;
+            background-color: var(--code-bg);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .options label:hover {
+            background-color: #313244;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: #11111b;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn:disabled {
+            background-color: #585b70;
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            padding: 8px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .correct {
+            background-color: rgba(166, 227, 161, 0.2);
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+        }
+
+        .incorrect {
+            background-color: rgba(243, 139, 168, 0.2);
+            color: var(--error-color);
+            border: 1px solid var(--error-color);
+        }
+
+        .attempts-left {
+            font-size: 0.85em;
+            color: var(--warning-color);
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>FTC Java Foundations: Stages 1–3</h1>
+    <p>Welcome! Complete each stage's reading and test your knowledge on the module quiz. You have <strong>2 attempts</strong> per question.</p>
+
+    <!-- STAGE 1 -->
+    <div class="stage-card">
+        <h2>Stage 1: Java Basics, Syntax & Math Foundations</h2>
+        
+        <h3>1. Keywords vs. Identifiers</h3>
+        <p>Programming languages enforce strict structural rules. Every token in Java belongs to a category:</p>
+        <ul>
+            <li><strong>Keywords:</strong> Pre-defined, reserved words built into Java that have specific functional meaning. They are always lowercase (e.g., <code class="kwd">public</code>, <code class="kwd">class</code>, <code class="kwd">void</code>, <code class="kwd">if</code>, <code class="kwd">while</code>, <code class="kwd">double</code>). You <em>cannot</em> name variables or methods after keywords.</li>
+            <li><strong>Identifiers:</strong> Custom names given by programmers to identify classes, variables, methods, and constants (e.g., <code class="vrb">armMotor</code>, <code class="vrb">targetPosition</code>). Java enforces camelCase by convention: variable names start lowercase (<code class="vrb">drivePower</code>), while Class names start uppercase (<code class="typ">LinearOpMode</code>).</li>
+        </ul>
+
+        <h3>2. Access Modifiers & Scope</h3>
+        <p>Access modifiers define where variables and methods can be accessed across your robot's codebase:</p>
+        <ul>
+            <li><code class="kwd">public</code>: Visible to all classes across the entire project.</li>
+            <li><code class="kwd">private</code>: Accessible <strong>only</strong> within the class where it is declared. In FTC, we use <code class="kwd">private</code> variables inside OpModes to prevent external code from accidentally modifying motor states.</li>
+            <li><code class="kwd">protected</code>: Accessible within the same package or subclasses.</li>
+        </ul>
+
+        <h3>3. Primitive Data Types vs. Reference Types</h3>
+        <p>Java is a strongly typed language—every variable must be explicitly declared with its data type before use:</p>
+        <pre><code><span class="com">// Primitive Types: Hold simple values directly in memory</span>
+<span class="kwd">double</span> <span class="vrb">motorPower</span> = <span class="num">0.75</span>;       <span class="com">// Decimal values (-1.0 to 1.0 for power, distances)</span>
+<span class="kwd">int</span> <span class="vrb">targetEncoderTicks</span> = <span class="num">1440</span>;   <span class="com">// Whole numbers (encoder counts, state steps)</span>
+<span class="kwd">boolean</span> <span class="vrb">isLimitSwitchPressed</span> = <span class="kwd">false</span>; <span class="com">// True/False states (sensor triggers, toggle flags)</span>
+
+<span class="com">// Reference Types: Point to objects stored elsewhere in memory</span>
+<span class="typ">String</span> <span class="vrb">driverMessage</span> = <span class="str">"Autonomous Active"</span>; <span class="com">// Text strings</span></code></pre>
+
+        <h3>4. Basic Math Operations & Pitfalls in Java</h3>
+        <p>Robotics code relies heavily on math to scale joystick inputs, convert encoder ticks to inches, and compute sensor thresholds.</p>
+        
+        <h4>Arithmetic Operators</h4>
+        <ul>
+            <li><strong>Addition (<code>+</code>):</strong> e.g., <code>targetTicks + 500</code></li>
+            <li><strong>Subtraction (<code>-</code>):</strong> e.g., <code>currentPos - startPos</code></li>
+            <li><strong>Multiplication (<code>*</code>):</strong> e.g., <code>joystickY * 0.8</code> (scaling motor power to 80%)</li>
+            <li><strong>Division (<code>/</code>):</strong> Behaviour depends on data types!</li>
+            <li><strong>Modulus (<code>%</code>):</strong> Returns the <em>remainder</em> of division. Frequently used for cycling through autonomous states or checking even/odd loop counts.</li>
+        </ul>
+
+        <h4>CRITICAL FTC PITFALL: Integer Division vs. Double Division</h4>
+        <p>If you divide two integers in Java, Java drops the fractional decimal part completely (it truncates, not rounds)!</p>
+        <pre><code><span class="com">// BAD: Both numbers are integers!</span>
+<span class="kwd">double</span> <span class="vrb">gearRatio</span> = <span class="num">1</span> / <span class="num">2</span>;  <span class="com">// Result is 0.0, NOT 0.5!</span>
+
+<span class="com">// GOOD: At least one operand must be a floating-point double</span>
+<span class="kwd">double</span> <span class="vrb">gearRatio</span> = <span class="num">1.0</span> / <span class="num">2.0</span>; <span class="com">// Result is 0.5</span>
+<span class="kwd">double</span> <span class="vrb">power</span> = <span class="vrb">encoderTicks</span> / <span class="num">1440.0</span>; <span class="com">// Dividing by double preserves decimals</span></code></pre>
+
+        <h4>Compound Operators & Shortcuts</h4>
+        <pre><code><span class="vrb">autoStep</span>++;          <span class="com">// Equivalent to autoStep = autoStep + 1; (Increment)</span>
+<span class="vrb">autoStep</span>--;          <span class="com">// Equivalent to autoStep = autoStep - 1; (Decrement)</span>
+<span class="vrb">armPower</span> *= <span class="num">0.5</span>;     <span class="com">// Equivalent to armPower = armPower * 0.5; (Cut power in half)</span>
+<span class="vrb">encoderTarget</span> += <span class="num">100</span>; <span class="com">// Add 100 ticks to current target</span></code></pre>
+
+        <h4>Operator Precedence (PEMDAS)</h4>
+        <p>Java follows standard mathematical order of operations (Parentheses, Multiplication/Division, Addition/Subtraction). Always use parentheses to ensure correct motor scaling:</p>
+        <pre><code><span class="com">// Calculate arcade drive power: (Drive + Turn) scaled by half</span>
+<span class="kwd">double</span> <span class="vrb">leftPower</span> = (<span class="vrb">driveInput</span> + <span class="vrb">turnInput</span>) * <span class="num">0.5</span>;</code></pre>
+
+        <h3>5. Control Flow & Boolean Logic</h3>
+        <p>Robots make decisions using comparison operators (<code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>) and logical operators (<code>&amp;&amp;</code> AND, <code>||</code> OR, <code>!</code> NOT):</p>
+        <pre><code><span class="com">// Decision making in TeleOp or Autonomous</span>
+<span class="kwd">if</span> (<span class="vrb">armEncoder</span> &gt; <span class="num">2000</span> &amp;&amp; !<span class="vrb">isLimitSwitchPressed</span>) {
+    <span class="vrb">armMotor</span>.setPower(<span class="num">0.0</span>); <span class="com">// Emergency stop arm if over-extended</span>
+} <span class="kwd">else</span> {
+    <span class="vrb">armMotor</span>.setPower(<span class="num">0.5</span>);
+}</code></pre>
+
+        <div class="quiz-container" id="quiz-stage1">
+            <h3>Stage 1 Quiz</h3>
+            
+            <!-- Q1 -->
+            <div class="question" id="s1q1">
+                <p>1. Which of the following is a custom identifier created by a programmer rather than a reserved Java keyword?</p>
+                <div class="options">
+                    <label><input type="radio" name="s1q1" value="A"> double</label>
+                    <label><input type="radio" name="s1q1" value="B"> public</label>
+                    <label><input type="radio" name="s1q1" value="C"> intakeMotor</label>
+                    <label><input type="radio" name="s1q1" value="D"> boolean</label>
+                </div>
+                <button class="btn" onclick="checkAnswer('s1q1')">Submit</button>
+                <span class="attempts-left" id="s1q1-attempts">2 attempts remaining</span>
+                <div class="feedback" id="s1q1-feedback"></div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question" id="s1q2">
+                <p>2. What will the variable `ratio` equal after executing the line: `double ratio = 3 / 4;`?</p>
+                <div class="options">
+                    <label><input type="radio" name="s1q2" value="A"> 0.75</label>
+                    <label><input type="radio" name="s1q2" value="B"> 0.0</label>
+                    <label><input type="radio" name="s1q2" value="C"> 1.0</label>
+                    <label><input type="radio" name="s1q2" value="D"> Syntax Error</label>
+                </div>
+                <button class="btn" onclick="checkAnswer('s1q2')">Submit</button>
+                <span class="attempts-left" id="s1q2-attempts">2 attempts remaining</span>
+                <div class="feedback" id="s1q2-feedback"></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question" id="s1q3">
+                <p>3. What operator should be used to find the remaining ticks when determining if an autonomous step counter is even or odd?</p>
+                <div class="options">
+                    <label><input type="radio" name="s1q3" value="A"> / (Division)</label>
+                    <label><input type="radio" name="s1q3" value="B"> * (Multiplication)</label>
+                    <label><input type="radio" name="s1q3" value="C"> % (Modulus)</label>
+                    <label><input type="radio" name="s1q3" value="D"> &amp;&amp; (Logical AND)</label>
+                </div>
+                <button class="btn" onclick="checkAnswer('s1q3')">Submit</button>
+                <span class="attempts-left" id="s1q3-attempts">2 attempts remaining</span>
+                <div class="feedback" id="s1q3-feedback"></div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question" id="s1q4">
+                <p>4. Which primitive data type should be used to record continuous values like velocity or motor power?</p>
+                <div class="options">
+                    <label><input type="radio" name="s1q4" value="A"> int</label>
+                    <label><input type="radio" name="s1q4" value="B"> boolean</label>
+                    <label><input type="radio" name="s1q4" value="C"> double</label>
+                    <label><input type="radio" name="s1q4" value="D"> String</label>
+                </div>
+                <button class="btn" onclick="checkAnswer('s1q4')">Submit</button>
+                <span class="attempts-left" id="s1q4-attempts">2 attempts remaining</span>
+                <div class="feedback" id="s1q4-feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage-card">
+        <h2>Stage 2: Object-Oriented Programming (OOP) in FTC</h2>
+        <p>In FTC, Java classes act as structural blueprints, and physical devices are controlled by instantiating objects built from those blueprints.</p>
+        
+        <h3>1. Classes vs. Objects</h3>
+        <ul>
+            <li><strong>Class:</strong> The master template (e.g., <code class="typ">DcMotor</code>, <code class="typ">Servo</code>, <code class="typ">IMU</code>).</li>
+            <li><strong>Object:</strong> A concrete instance created in memory (e.g., <code class="vrb">frontLeftMotor</code>, <code class="vrb">wristServo</code>).</li>
+        </ul>
+
+        <h3>2. Methods and Dot Notation</h3>
+        <p>Methods are functional actions an object performs. You invoke methods using dot notation: <code>objectName.methodName(parameters);</code></p>
+
+        <h3>3. Packages & Import Statements</h3>
+        <p>To use hardware devices, you must import the corresponding FIRST Tech Challenge library files at the top of your Java file:</p>
+
+        <pre><code><span class="kwd">package</span> org.firstinspires.ftc.teamcode;
+
+<span class="com">// Import FIRST SDK Hardware classes</span>
+<span class="kwd">import</span> com.qualcomm.robotcore.hardware.<span class="typ">DcMotor</span>;
+<span class="kwd">import</span> com.qualcomm.robotcore.hardware.<span class="typ">Servo</span>;
+
+<span class="kwd">public class</span> <span class="typ">MechanismControl</span> {
+    <span class="kwd">private</span> <span class="typ">DcMotor</span> <span class="vrb">armMotor</span>;
+    <span class="kwd">private</span> <span class="typ">Servo</span> <span class="vrb">clawServo</span>;
+
+    <span class="kwd">public void</span> setClawPosition(<span class="kwd">double</span> <span class="vrb">position</span>) {
+        <span class="vrb">clawServo</span>.setPosition(<span class="vrb">position</span>); <span class="com">// Passing argument 'position' to method</span>
+    }
+}</code></pre>
+
+        <div class="quiz-container" id="quiz-stage2">
+            <h3>Stage 2 Quiz</h3>
+
+            <!-- Q1 -->
+            <div class="question" id="s2q1">
+                <p>1. In FTC Java development, what is `DcMotor` considered in OOP terminology?</p>
+                <div class="options">
+                    <label><input type="radio" name="s2q1" value="A"> An Object</label>
+                    <label><input type="radio" name="s2q1" value="B"> A Method</label>
+                    <label><input type="radio" name="s2q1" value="C"> A Class (Blueprint)</label>
+                    <label><input type="radio" name="s2q1" value="D"> A Primitive Data Type</label>
+                </div>
+                <button class="btn" onclick="checkAnswer('s2q1')">Submit</button>
+                <span class="attempts-left" id="s2q1-attempts">2 attempts remaining</span>
+                <div class="feedback" id="s2q1-feedback"></div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question" id="s2q2">
+                <p>2. What is the correct syntax for calling the method `setPower` on a motor object named `launcherMotor`?</p>
+                <div class="options">
+                    <label><input type="radio" name="s2q2" value="A"> setPower(launcherMotor, 1.0);</label>
+                    <label><input type="radio" name="s2q2" value="B"> launcherMotor.setPower(1.0);</label>
+                    <label><input type="radio" name="s2q2" value="C"> DcMotor.launcherMotor(1.0);</label>
+                    <label><input type="radio" name="s2q2" value="D"> launcherMotor -&gt; setPower(1.0);</label>
+                </div>
+                <button class="btn" onclick="checkAnswer('s2q2')">Submit</button>
+                <span class="attempts-left" id="s2q2-attempts">2 attempts remaining</span>
+                <div class="feedback" id="s2q2-feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage-card">
+        <h2>Stage 3: FTC SDK Architecture</h2>
+        <p>FTC OpModes execute code in two main structures depending on whether you are running Autonomous or TeleOp routines.</p>
+
+        <h3>LinearOpMode vs. Iterative OpMode</h3>
+        <ul>
+            <li><strong>LinearOpMode:</strong> Executes sequentially line-by-line. Standard for Autonomous. Pauses execution at <code class="kwd">waitForStart()</code> until the driver presses PLAY.</li>
+            <li><strong>OpMode (Iterative):</strong> Event-driven execution. Standard for TeleOp. Contains routines like <code class="kwd">init()</code>, <code class="kwd">init_loop()</code>, <code class="kwd">start()</code>, and a continuously repeating <code class="kwd">loop()</code>.</li>
+        </ul>
+
+        <h3>Hardware Mapping & Gamepad Inputs</h3>
+        <p>The <code class="vrb">hardwareMap</code> connects configured string names on the Driver Station to code variables. Inputs from controllers are continuously read during the loop:</p>
+
+        <pre><code><span class="ann">@TeleOp</span>(name = <span class="str">"Standard Drive"</span>, group = <span class="str">"TeleOp"</span>)
+<span class="kwd">public class</span> <span class="typ">StandardDrive</span> <span class="kwd">extends</span> <span class="typ">LinearOpMode</span> {
+
+    <span class="com">// Declare hardware objects</span>
+    <span class="kwd">private</span> <span class="typ">DcMotor</span> <span class="vrb">leftDrive</span>;
+    <span class="kwd">private</span> <span class="typ">DcMotor</span> <span class="vrb">rightDrive</span>;
+
+    <span class="ann">@Override</span>
+    <span class="kwd">public void</span> runOpMode() {
+        <span class="com">// Hardware Mapping (Matches Driver Station Robot Configuration)</span>
+        <span class="vrb">leftDrive</span>  = <span class="vrb">hardwareMap</span>.get(<span class="typ">DcMotor</span>.<span class="kwd">class</span>, <span class="str">"left_drive"</span>);
+        <span class="vrb">rightDrive</span> = <span class="vrb">hardwareMap</span>.get(<span class="typ">DcMotor</span>.<span class="kwd">class</span>, <span class="str">"right_drive"</span>);
+
+        <span class="vrb">telemetry</span>.addData(<span class="str">"Status"</span>, <span class="str">"Initialized"</span>);
+        <span class="vrb">telemetry</span>.update();
+
+        <span class="com">// Wait for driver to press PLAY</span>
+        waitForStart();
+
+        <span class="com">// Main OpMode loop</span>
+        <span class="kwd">while</span> (opModeIsActive()) {
+            <span class="com">// Gamepad joystick Y values are inverted (-1.0 is full UP)</span>
+            <span class="kwd">double</span> <span class="vrb">drivePower</span> = -<span class="vrb">gamepad1</span>.<span class="vrb">left_stick_y</span>;
+            
+            <span class="vrb">leftDrive</span>.setPower(<span class="vrb">drivePower</span>);
+            <span class="vrb">rightDrive</span>.setPower(<span class="vrb">drivePower</span>);
+
+            <span class="vrb">telemetry</span>.addData(<span class="str">"Power"</span>, <span class="vrb">drivePower</span>);
+            <span class="vrb">telemetry</span>.update();
+        }
+    }
+}</code></pre>
+
+        <div class="quiz-container" id="quiz-stage3">
+            <h3>Stage 3 Quiz</h3>
+
+            <!-- Q1 -->
+            <div class="question" id="s3q1">
+                <p>1. What string parameter must be passed to `hardwareMap.get()`?</p>
+                <div class="options">
+                    <label><input type="radio" name="s3q1" value="A"> The exact name configured in the Control Hub configuration file</label>
+                    <label><input type="radio" name="s3q1" value="B"> The variable name declared in Java</label>
+                    <label><input type="radio" name="s3q1" value="C"> The IP address of the Control Hub</label>
+                    <label><input type="radio" name="s3q1" value="D"> The physical port number on the Control Hub</label>
+                </div>
+                <button class="btn" onclick="checkAnswer('s3q1')">Submit</button>
+                <span class="attempts-left" id="s3q1-attempts">2 attempts remaining</span>
+                <div class="feedback" id="s3q1-feedback"></div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question" id="s3q2">
+                <p>2. Why do we negate (`-`) `gamepad1.left_stick_y` when calculating forward motor power?</p>
+                <div class="options">
+                    <label><input type="radio" name="s3q2" value="A"> Because gamepads use reversed voltage signals.</label>
+                    <label><input type="radio" name="s3q2" value="B"> Pushing the gamepad stick forward returns a negative value in FTC SDK.</label>
+                    <label><input type="radio" name="s3q2" value="C"> It prevents motors from burning out under acceleration.</label>
+                    <label><input type="radio" name="s3q2" value="D"> To convert integer joystick positions into floating double values.</label>
+                </div>
+                <button class="btn" onclick="checkAnswer('s3q2')">Submit</button>
+                <span class="attempts-left" id="s3q2-attempts">2 attempts remaining</span>
+                <div class="feedback" id="s3q2-feedback"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Obfuscated Correct Answers (MD5 Hashes of the option letters: 'A', 'B', 'C', or 'D')
+    // A -> "7fc15c68f96f0113264627258a18357a"
+    // B -> "9d5ed678fe57bcca610140957afab571"
+    // C -> "0d61f8370cad1d412f80b84d143e1257"
+    // D -> "f623e75af30e62bbd73d6df5b50bb7b5"
+    
+    const hashedAnswers = {
+        s1q1: "0d61f8370cad1d412f80b84d143e1257", // C
+        s1q2: "9d5ed678fe57bcca610140957afab571", // B
+        s1q3: "0d61f8370cad1d412f80b84d143e1257", // C
+        s1q4: "0d61f8370cad1d412f80b84d143e1257", // C
+        s2q1: "0d61f8370cad1d412f80b84d143e1257", // C
+        s2q2: "9d5ed678fe57bcca610140957afab571", // B
+        s3q1: "7fc15c68f96f0113264627258a18357a", // A
+        s3q2: "9d5ed678fe57bcca610140957afab571"  // B
+    };
+
+    // Tracking remaining attempts per question
+    const attempts = {
+        s1q1: 2, s1q2: 2, s1q3: 2, s1q4: 2,
+        s2q1: 2, s2q2: 2,
+        s3q1: 2, s3q2: 2
+    };
+
+    function checkAnswer(qId) {
+        if (attempts[qId] <= 0) return;
+
+        const selectedOption = document.querySelector(`input[name="${qId}"]:checked`);
+        const feedbackEl = document.getElementById(`${qId}-feedback`);
+        const attemptsEl = document.getElementById(`${qId}-attempts`);
+        const submitBtn = document.querySelector(`#${qId} button`);
+
+        if (!selectedOption) {
+            feedbackEl.innerText = "Please select an option first!";
+            feedbackEl.className = "feedback incorrect";
+            feedbackEl.style.display = "block";
+            return;
+        }
+
+        attempts[qId]--;
+
+        // Compute MD5 hash of selected input option ('A', 'B', 'C', or 'D')
+        const userSelectedValue = selectedOption.value;
+        const userSelectionHash = CryptoJS.MD5(userSelectedValue).toString();
+
+        if (userSelectionHash === hashedAnswers[qId]) {
+            feedbackEl.innerText = "Correct! Well done.";
+            feedbackEl.className = "feedback correct";
+            feedbackEl.style.display = "block";
+            submitBtn.disabled = true;
+            attemptsEl.innerText = "";
+        } else {
+            if (attempts[qId] > 0) {
+                feedbackEl.innerText = "Incorrect answer. Try again!";
+                feedbackEl.className = "feedback incorrect";
+                feedbackEl.style.display = "block";
+                attemptsEl.innerText = `${attempts[qId]} attempt remaining`;
+            } else {
+                feedbackEl.innerText = "Incorrect. Out of attempts!";
+                feedbackEl.className = "feedback incorrect";
+                feedbackEl.style.display = "block";
+                submitBtn.disabled = true;
+                attemptsEl.innerText = "0 attempts remaining";
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
