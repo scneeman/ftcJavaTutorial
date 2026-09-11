@@ -154,22 +154,6 @@
             background-color: #313244;
         }
 
-        .btn {
-            background-color: var(--accent-color);
-            color: #11111b;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .btn:disabled {
-            background-color: #585b70;
-            cursor: not-allowed;
-        }
-
         .feedback {
             margin-top: 10px;
             font-weight: bold;
@@ -193,7 +177,8 @@
         .attempts-left {
             font-size: 0.85em;
             color: var(--warning-color);
-            margin-left: 10px;
+            display: inline-block;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -201,7 +186,7 @@
 
 <div class="container">
     <h1>FTC Java Foundations: Stages 1–3</h1>
-    <p>Welcome! Complete each stage's reading module and pass the check for understanding. You get <strong>2 attempts</strong> per question.</p>
+    <p>Welcome! Complete each stage's reading module and pass the check for understanding. Selecting an answer checks it immediately. You get <strong>2 attempts</strong> per question.</p>
 
     <!-- STAGE 1 -->
     <div class="stage-card">
@@ -335,12 +320,11 @@
             <div class="question" id="s1q1">
                 <p>1. In the method header `public void liftArm(double targetPower, int targetTicks)`, what does the word `void` mean?</p>
                 <div class="options">
-                    <label><input type="radio" name="s1q1" value="A"> The method requires no input parameters.</label>
-                    <label><input type="radio" name="s1q1" value="B"> The method performs actions but returns no output data value.</label>
-                    <label><input type="radio" name="s1q1" value="C"> The method is private to this class.</label>
-                    <label><input type="radio" name="s1q1" value="D"> The arm motor power is set to 0.</label>
+                    <label><input type="radio" name="s1q1" value="A" onchange="checkAnswer('s1q1', this)"> The method requires no input parameters.</label>
+                    <label><input type="radio" name="s1q1" value="B" onchange="checkAnswer('s1q1', this)"> The method performs actions but returns no output data value.</label>
+                    <label><input type="radio" name="s1q1" value="C" onchange="checkAnswer('s1q1', this)"> The method is private to this class.</label>
+                    <label><input type="radio" name="s1q1" value="D" onchange="checkAnswer('s1q1', this)"> The arm motor power is set to 0.</label>
                 </div>
-                <button class="btn" onclick="checkAnswer('s1q1')">Submit</button>
                 <span class="attempts-left" id="s1q1-attempts">2 attempts remaining</span>
                 <div class="feedback" id="s1q1-feedback"></div>
             </div>
@@ -349,12 +333,11 @@
             <div class="question" id="s1q2">
                 <p>2. What value is stored in `gearRatio` after running: `double gearRatio = 3 / 4;`?</p>
                 <div class="options">
-                    <label><input type="radio" name="s1q2" value="A"> 0.75</label>
-                    <label><input type="radio" name="s1q2" value="B"> 0.0</label>
-                    <label><input type="radio" name="s1q2" value="C"> 1.0</label>
-                    <label><input type="radio" name="s1q2" value="D"> 0.7500</label>
+                    <label><input type="radio" name="s1q2" value="A" onchange="checkAnswer('s1q2', this)"> 0.75</label>
+                    <label><input type="radio" name="s1q2" value="B" onchange="checkAnswer('s1q2', this)"> 0.0</label>
+                    <label><input type="radio" name="s1q2" value="C" onchange="checkAnswer('s1q2', this)"> 1.0</label>
+                    <label><input type="radio" name="s1q2" value="D" onchange="checkAnswer('s1q2', this)"> 0.7500</label>
                 </div>
-                <button class="btn" onclick="checkAnswer('s1q2')">Submit</button>
                 <span class="attempts-left" id="s1q2-attempts">2 attempts remaining</span>
                 <div class="feedback" id="s1q2-feedback"></div>
             </div>
@@ -363,12 +346,11 @@
             <div class="question" id="s1q3">
                 <p>3. Why is `Math.toRadians()` frequently called when dealing with IMU gyro readings in autonomous code?</p>
                 <div class="options">
-                    <label><input type="radio" name="s1q3" value="A"> Because Control Hub hardware only measures speed in radians.</label>
-                    <label><input type="radio" name="s1q3" value="B"> Java trigonometric functions and pathing libraries (like Pedro Pathing) expect angles in radians.</label>
-                    <label><input type="radio" name="s1q3" value="C"> To prevent integer division errors when calculating power.</label>
-                    <label><input type="radio" name="s1q3" value="D"> To automatically reverse motor directions.</label>
+                    <label><input type="radio" name="s1q3" value="A" onchange="checkAnswer('s1q3', this)"> Because Control Hub hardware only measures speed in radians.</label>
+                    <label><input type="radio" name="s1q3" value="B" onchange="checkAnswer('s1q3', this)"> Java trigonometric functions and pathing libraries (like Pedro Pathing) expect angles in radians.</label>
+                    <label><input type="radio" name="s1q3" value="C" onchange="checkAnswer('s1q3', this)"> To prevent integer division errors when calculating power.</label>
+                    <label><input type="radio" name="s1q3" value="D" onchange="checkAnswer('s1q3', this)"> To automatically reverse motor directions.</label>
                 </div>
-                <button class="btn" onclick="checkAnswer('s1q3')">Submit</button>
                 <span class="attempts-left" id="s1q3-attempts">2 attempts remaining</span>
                 <div class="feedback" id="s1q3-feedback"></div>
             </div>
@@ -377,12 +359,11 @@
             <div class="question" id="s1q4">
                 <p>4. What must be called after `telemetry.addData()` to ensure messages update immediately on the Driver Station screen?</p>
                 <div class="options">
-                    <label><input type="radio" name="s1q4" value="A"> telemetry.send()</label>
-                    <label><input type="radio" name="s1q4" value="B"> telemetry.update()</label>
-                    <label><input type="radio" name="s1q4" value="C"> telemetry.clear()</label>
-                    <label><input type="radio" name="s1q4" value="D"> System.out.println()</label>
+                    <label><input type="radio" name="s1q4" value="A" onchange="checkAnswer('s1q4', this)"> telemetry.send()</label>
+                    <label><input type="radio" name="s1q4" value="B" onchange="checkAnswer('s1q4', this)"> telemetry.update()</label>
+                    <label><input type="radio" name="s1q4" value="C" onchange="checkAnswer('s1q4', this)"> telemetry.clear()</label>
+                    <label><input type="radio" name="s1q4" value="D" onchange="checkAnswer('s1q4', this)"> System.out.println()</label>
                 </div>
-                <button class="btn" onclick="checkAnswer('s1q4')">Submit</button>
                 <span class="attempts-left" id="s1q4-attempts">2 attempts remaining</span>
                 <div class="feedback" id="s1q4-feedback"></div>
             </div>
@@ -457,12 +438,11 @@
             <div class="question" id="s2q1">
                 <p>1. What parameter range does `servo.setPosition()` accept?</p>
                 <div class="options">
-                    <label><input type="radio" name="s2q1" value="A"> -1.0 to 1.0</label>
-                    <label><input type="radio" name="s2q1" value="B"> 0.0 to 1.0</label>
-                    <label><input type="radio" name="s2q1" value="C"> 0 to 360</label>
-                    <label><input type="radio" name="s2q1" value="D"> 0 to 1440</label>
+                    <label><input type="radio" name="s2q1" value="A" onchange="checkAnswer('s2q1', this)"> -1.0 to 1.0</label>
+                    <label><input type="radio" name="s2q1" value="B" onchange="checkAnswer('s2q1', this)"> 0.0 to 1.0</label>
+                    <label><input type="radio" name="s2q1" value="C" onchange="checkAnswer('s2q1', this)"> 0 to 360</label>
+                    <label><input type="radio" name="s2q1" value="D" onchange="checkAnswer('s2q1', this)"> 0 to 1440</label>
                 </div>
-                <button class="btn" onclick="checkAnswer('s2q1')">Submit</button>
                 <span class="attempts-left" id="s2q1-attempts">2 attempts remaining</span>
                 <div class="feedback" id="s2q1-feedback"></div>
             </div>
@@ -471,12 +451,11 @@
             <div class="question" id="s2q2">
                 <p>2. Which `DcMotor.RunMode` must be executed to reset an encoder count back to zero?</p>
                 <div class="options">
-                    <label><input type="radio" name="s2q2" value="A"> RUN_USING_ENCODER</label>
-                    <label><input type="radio" name="s2q2" value="B"> STOP_AND_RESET_ENCODER</label>
-                    <label><input type="radio" name="s2q2" value="C"> RESET_ALL_MOTORS</label>
-                    <label><input type="radio" name="s2q2" value="D"> RUN_TO_POSITION</label>
+                    <label><input type="radio" name="s2q2" value="A" onchange="checkAnswer('s2q2', this)"> RUN_USING_ENCODER</label>
+                    <label><input type="radio" name="s2q2" value="B" onchange="checkAnswer('s2q2', this)"> STOP_AND_RESET_ENCODER</label>
+                    <label><input type="radio" name="s2q2" value="C" onchange="checkAnswer('s2q2', this)"> RESET_ALL_MOTORS</label>
+                    <label><input type="radio" name="s2q2" value="D" onchange="checkAnswer('s2q2', this)"> RUN_TO_POSITION</label>
                 </div>
-                <button class="btn" onclick="checkAnswer('s2q2')">Submit</button>
                 <span class="attempts-left" id="s2q2-attempts">2 attempts remaining</span>
                 <div class="feedback" id="s2q2-feedback"></div>
             </div>
@@ -485,12 +464,11 @@
             <div class="question" id="s2q3">
                 <p>3. What data type is returned when calling `touchSensor.isPressed()`?</p>
                 <div class="options">
-                    <label><input type="radio" name="s2q3" value="A"> double</label>
-                    <label><input type="radio" name="s2q3" value="B"> int</label>
-                    <label><input type="radio" name="s2q3" value="C"> boolean</label>
-                    <label><input type="radio" name="s2q3" value="D"> String</label>
+                    <label><input type="radio" name="s2q3" value="A" onchange="checkAnswer('s2q3', this)"> double</label>
+                    <label><input type="radio" name="s2q3" value="B" onchange="checkAnswer('s2q3', this)"> int</label>
+                    <label><input type="radio" name="s2q3" value="C" onchange="checkAnswer('s2q3', this)"> boolean</label>
+                    <label><input type="radio" name="s2q3" value="D" onchange="checkAnswer('s2q3', this)"> String</label>
                 </div>
-                <button class="btn" onclick="checkAnswer('s2q3')">Submit</button>
                 <span class="attempts-left" id="s2q3-attempts">2 attempts remaining</span>
                 <div class="feedback" id="s2q3-feedback"></div>
             </div>
@@ -564,12 +542,11 @@
             <div class="question" id="s3q1">
                 <p>1. What string parameter must be passed to `hardwareMap.get()`?</p>
                 <div class="options">
-                    <label><input type="radio" name="s3q1" value="A"> The exact device name configured on the Control Hub Driver Station configuration</label>
-                    <label><input type="radio" name="s3q1" value="B"> The variable name declared in Java</label>
-                    <label><input type="radio" name="s3q1" value="C"> The IP address of the Control Hub</label>
-                    <label><input type="radio" name="s3q1" value="D"> The physical port number on the Control Hub</label>
+                    <label><input type="radio" name="s3q1" value="A" onchange="checkAnswer('s3q1', this)"> The exact device name configured on the Control Hub Driver Station configuration</label>
+                    <label><input type="radio" name="s3q1" value="B" onchange="checkAnswer('s3q1', this)"> The variable name declared in Java</label>
+                    <label><input type="radio" name="s3q1" value="C" onchange="checkAnswer('s3q1', this)"> The IP address of the Control Hub</label>
+                    <label><input type="radio" name="s3q1" value="D" onchange="checkAnswer('s3q1', this)"> The physical port number on the Control Hub</label>
                 </div>
-                <button class="btn" onclick="checkAnswer('s3q1')">Submit</button>
                 <span class="attempts-left" id="s3q1-attempts">2 attempts remaining</span>
                 <div class="feedback" id="s3q1-feedback"></div>
             </div>
@@ -578,12 +555,11 @@
             <div class="question" id="s3q2">
                 <p>2. Which method inside an iterative `OpMode` runs continuously BEFORE the driver presses PLAY?</p>
                 <div class="options">
-                    <label><input type="radio" name="s3q2" value="A"> init()</label>
-                    <label><input type="radio" name="s3q2" value="B"> init_loop()</label>
-                    <label><input type="radio" name="s3q2" value="C"> loop()</label>
-                    <label><input type="radio" name="s3q2" value="D"> start()</label>
+                    <label><input type="radio" name="s3q2" value="A" onchange="checkAnswer('s3q2', this)"> init()</label>
+                    <label><input type="radio" name="s3q2" value="B" onchange="checkAnswer('s3q2', this)"> init_loop()</label>
+                    <label><input type="radio" name="s3q2" value="C" onchange="checkAnswer('s3q2', this)"> loop()</label>
+                    <label><input type="radio" name="s3q2" value="D" onchange="checkAnswer('s3q2', this)"> start()</label>
                 </div>
-                <button class="btn" onclick="checkAnswer('s3q2')">Submit</button>
                 <span class="attempts-left" id="s3q2-attempts">2 attempts remaining</span>
                 <div class="feedback" id="s3q2-feedback"></div>
             </div>
@@ -592,12 +568,11 @@
             <div class="question" id="s3q3">
                 <p>3. Why is `OpMode` well-suited for autonomous state machines compared to a single linear script?</p>
                 <div class="options">
-                    <label><input type="radio" name="s3q3" value="A"> It automatically turns off all motors when autonomous ends.</label>
-                    <label><input type="radio" name="s3q3" value="B"> The `loop()` method constantly refreshes motor outputs and sensor readings every ~10–20ms, preventing the robot from freezing.</label>
-                    <label><input type="radio" name="s3q3" value="C"> It bypasses the need to perform hardware mapping.</label>
-                    <label><input type="radio" name="s3q3" value="D"> It forces motors to run twice as fast.</label>
+                    <label><input type="radio" name="s3q3" value="A" onchange="checkAnswer('s3q3', this)"> It automatically turns off all motors when autonomous ends.</label>
+                    <label><input type="radio" name="s3q3" value="B" onchange="checkAnswer('s3q3', this)"> The `loop()` method constantly refreshes motor outputs and sensor readings every ~10–20ms, preventing the robot from freezing.</label>
+                    <label><input type="radio" name="s3q3" value="C" onchange="checkAnswer('s3q3', this)"> It bypasses the need to perform hardware mapping.</label>
+                    <label><input type="radio" name="s3q3" value="D" onchange="checkAnswer('s3q3', this)"> It forces motors to run twice as fast.</label>
                 </div>
-                <button class="btn" onclick="checkAnswer('s3q3')">Submit</button>
                 <span class="attempts-left" id="s3q3-attempts">2 attempts remaining</span>
                 <div class="feedback" id="s3q3-feedback"></div>
             </div>
@@ -632,36 +607,32 @@
         s3q1: 2, s3q2: 2, s3q3: 2
     };
 
-    function checkAnswer(qId) {
+    function checkAnswer(qId, selectedRadio) {
         if (attempts[qId] <= 0) return;
 
-        const selectedOption = document.querySelector(`input[name="${qId}"]:checked`);
         const feedbackEl = document.getElementById(`${qId}-feedback`);
         const attemptsEl = document.getElementById(`${qId}-attempts`);
-        const submitBtn = document.querySelector(`#${qId} button`);
+        const allRadios = document.querySelectorAll(`input[name="${qId}"]`);
 
-        if (!selectedOption) {
-            feedbackEl.innerText = "Please select an option first!";
-            feedbackEl.className = "feedback incorrect";
-            feedbackEl.style.display = "block";
-            return;
-        }
-
+        // Disable selected option so it cannot be re-clicked
+        selectedRadio.disabled = true;
         attempts[qId]--;
 
         // Hash user selection and compare against secure hash
-        const userSelectedValue = selectedOption.value;
+        const userSelectedValue = selectedRadio.value;
         const userSelectionHash = CryptoJS.MD5(userSelectedValue).toString();
 
         if (userSelectionHash === hashedAnswers[qId]) {
             feedbackEl.innerText = "Correct! Great job.";
             feedbackEl.className = "feedback correct";
             feedbackEl.style.display = "block";
-            submitBtn.disabled = true;
             attemptsEl.innerText = "";
+            
+            // Disable all remaining options since answer is found
+            allRadios.forEach(r => r.disabled = true);
         } else {
             if (attempts[qId] > 0) {
-                feedbackEl.innerText = "Incorrect answer. Try again!";
+                feedbackEl.innerText = "Incorrect answer. Try another option!";
                 feedbackEl.className = "feedback incorrect";
                 feedbackEl.style.display = "block";
                 attemptsEl.innerText = `${attempts[qId]} attempt remaining`;
@@ -669,8 +640,10 @@
                 feedbackEl.innerText = "Incorrect. Out of attempts!";
                 feedbackEl.className = "feedback incorrect";
                 feedbackEl.style.display = "block";
-                submitBtn.disabled = true;
                 attemptsEl.innerText = "0 attempts remaining";
+                
+                // Disable remaining options
+                allRadios.forEach(r => r.disabled = true);
             }
         }
     }
