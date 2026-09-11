@@ -83,6 +83,27 @@
             color: var(--accent-color);
         }
 
+        /* Breakdown Cards for Method Header Explanation */
+        .breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .breakdown-card {
+            background-color: var(--code-bg);
+            border: 1px solid #45475a;
+            border-radius: 6px;
+            padding: 12px;
+        }
+
+        .breakdown-card strong {
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
         /* IDE Code Block Styling */
         pre {
             background-color: var(--code-bg);
@@ -190,17 +211,43 @@
         <p>When writing Java code for FTC, every word in your program falls into one of two fundamental categories:</p>
         
         <ul>
-            <li><strong>Java Reserved Words (Keywords):</strong> These are words built directly into the Java language engine (such as <code>public</code>, <code>class</code>, <code>double</code>, or <code>void</code>). They are strictly protected by the compiler, meaning you <em>cannot</em> use them as variable names, method names, or class names. In standard IDEs like Android Studio, keywords are highlighted in a distinct color.</li>
-            <li><strong>Programmer-Defined Identifiers:</strong> These are custom names created by you, the programmer. When naming motors, servos, calculation results, or classes (e.g., <code>leftFrontMotor</code>, <code>armTargetPosition</code>, or <code>AutoPathRunner</code>), you are choosing identifiers. They should always be clear, descriptive, and follow Java camelCase naming conventions.</li>
+            <li><strong>Java Reserved Words (Keywords):</strong> Words built directly into Java (such as <code>public</code>, <code>class</code>, <code>double</code>, or <code>void</code>). They are protected by the compiler and <em>cannot</em> be used as custom variable names.</li>
+            <li><strong>Programmer-Defined Identifiers:</strong> Custom names created by you (e.g., <code>leftFrontMotor</code>, <code>armTargetPosition</code>). They should follow Java camelCase naming conventions.</li>
         </ul>
 
         <div class="callout">
-            <strong>Key Takeaway for Mentors & Students:</strong> Compiler syntax errors frequently occur when a student accidentally tries to name a variable using a reserved keyword or forgets that Java is strictly case-sensitive (e.g., <code>Double</code> is an object wrapper class, while <code>double</code> is a primitive keyword).
+            <strong>Key Takeaway:</strong> Compiler errors often occur when students accidentally name variables using reserved words or forget that Java is case-sensitive (e.g., <code>double</code> vs. <code>Double</code>).
         </div>
 
-        <h3>2. Categorization of Reserved Java Keywords</h3>
-        <p>Here are the core keyword categories used daily in FTC robotics programs:</p>
+        <h3>2. Anatomic Breakdown of a Java Method Header</h3>
+        <p>A <strong>Method Header</strong> tells Java how a function can be accessed, what it calculates, what name it has, and what input values it needs to run. Let's break down this FTC arm control method word-by-word:</p>
 
+        <pre><code><span class="kwd">public</span> <span class="kwd">void</span> liftArm(<span class="kwd">double</span> <span class="vrb">targetPower</span>, <span class="kwd">int</span> <span class="vrb">targetTicks</span>)</code></pre>
+
+        <div class="breakdown-grid">
+            <div class="breakdown-card">
+                <strong>1. <code>public</code> (Access Modifier)</strong>
+                Specifies visibility. <code>public</code> means other classes (like your main OpMode) can call and execute this method.
+            </div>
+            <div class="breakdown-card">
+                <strong>2. <code>void</code> (Return Type)</strong>
+                Specifies output. <code>void</code> means this method executes actions (moving a motor) but returns <em>no data</em> back. If it returned a number, this would say <code>double</code> or <code>int</code>.
+            </div>
+            <div class="breakdown-card">
+                <strong>3. <code>liftArm</code> (Method Name)</strong>
+                A programmer-chosen identifier following camelCase naming conventions. Describes the action performed.
+            </div>
+            <div class="breakdown-card">
+                <strong>4. <code>(double targetPower, int targetTicks)</code> (Parameters)</strong>
+                Input variables required to run:
+                <ul>
+                    <li><code>double targetPower</code>: Floating-point number for motor power (e.g., <code>0.75</code>).</li>
+                    <li><code>int targetTicks</code>: Whole integer for target encoder position (e.g., <code>1200</code>).</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>3. Categorization of Reserved Java Keywords</h3>
         <table>
             <thead>
                 <tr>
@@ -233,9 +280,7 @@
             </tbody>
         </table>
 
-        <h3>3. Essential Java & FTC Helper Methods</h3>
-        <p>Beyond keywords, FTC programmers rely heavily on standard Java library methods and FTC SDK telemetry tools:</p>
-
+        <h3>4. Essential Java & FTC Helper Methods</h3>
         <table>
             <thead>
                 <tr>
@@ -273,7 +318,7 @@
             </tbody>
         </table>
 
-        <h3>4. Basic Math Operations & Integer Division Pitfalls</h3>
+        <h3>5. Basic Math Operations & Integer Division Pitfalls</h3>
         <p>Java supports standard arithmetic (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>). However, **Integer Division** is a frequent source of bugs for beginners:</p>
 
         <pre><code><span class="com">// INCORRECT: Dividing two integers drops the decimal completely!</span>
@@ -288,12 +333,12 @@
             
             <!-- Q1 -->
             <div class="question" id="s1q1">
-                <p>1. Which keyword is used to indicate that a Java method performs actions but does NOT return any calculated value?</p>
+                <p>1. In the method header `public void liftArm(double targetPower, int targetTicks)`, what does the word `void` mean?</p>
                 <div class="options">
-                    <label><input type="radio" name="s1q1" value="A"> double</label>
-                    <label><input type="radio" name="s1q1" value="B"> void</label>
-                    <label><input type="radio" name="s1q1" value="C"> private</label>
-                    <label><input type="radio" name="s1q1" value="D"> null</label>
+                    <label><input type="radio" name="s1q1" value="A"> The method requires no input parameters.</label>
+                    <label><input type="radio" name="s1q1" value="B"> The method performs actions but returns no output data value.</label>
+                    <label><input type="radio" name="s1q1" value="C"> The method is private to this class.</label>
+                    <label><input type="radio" name="s1q1" value="D"> The arm motor power is set to 0.</label>
                 </div>
                 <button class="btn" onclick="checkAnswer('s1q1')">Submit</button>
                 <span class="attempts-left" id="s1q1-attempts">2 attempts remaining</span>
