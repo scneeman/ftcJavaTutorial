@@ -53,6 +53,15 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
+        /* Callout Box for Key Concepts */
+        .callout {
+            background-color: var(--code-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
         /* Tables for Keywords and Hardware */
         table {
             width: 100%;
@@ -177,8 +186,20 @@
     <div class="stage-card">
         <h2>Stage 1: In-Depth Java Syntax, Keywords & Math</h2>
 
-        <h3>1. Categorization of Reserved Java Keywords</h3>
-        <p>Java has 50+ reserved keywords that have fixed, built-in definitions. You cannot use these as variable or class names. Here are the core keyword categories used daily in FTC robotics:</p>
+        <h3>1. Java Reserved Keywords vs. Programmer Identifiers</h3>
+        <p>When writing Java code for FTC, every word in your program falls into one of two fundamental categories:</p>
+        
+        <ul>
+            <li><strong>Java Reserved Words (Keywords):</strong> These are words built directly into the Java language engine (such as <code>public</code>, <code>class</code>, <code>double</code>, or <code>void</code>). They are strictly protected by the compiler, meaning you <em>cannot</em> use them as variable names, method names, or class names. In standard IDEs like Android Studio, keywords are highlighted in a distinct color.</li>
+            <li><strong>Programmer-Defined Identifiers:</strong> These are custom names created by you, the programmer. When naming motors, servos, calculation results, or classes (e.g., <code>leftFrontMotor</code>, <code>armTargetPosition</code>, or <code>AutoPathRunner</code>), you are choosing identifiers. They should always be clear, descriptive, and follow Java camelCase naming conventions.</li>
+        </ul>
+
+        <div class="callout">
+            <strong>Key Takeaway for Mentors & Students:</strong> Compiler syntax errors frequently occur when a student accidentally tries to name a variable using a reserved keyword or forgets that Java is strictly case-sensitive (e.g., <code>Double</code> is an object wrapper class, while <code>double</code> is a primitive keyword).
+        </div>
+
+        <h3>2. Categorization of Reserved Java Keywords</h3>
+        <p>Here are the core keyword categories used daily in FTC robotics programs:</p>
 
         <table>
             <thead>
@@ -212,7 +233,7 @@
             </tbody>
         </table>
 
-        <h3>2. Essential Java & FTC Helper Methods</h3>
+        <h3>3. Essential Java & FTC Helper Methods</h3>
         <p>Beyond keywords, FTC programmers rely heavily on standard Java library methods and FTC SDK telemetry tools:</p>
 
         <table>
@@ -252,7 +273,7 @@
             </tbody>
         </table>
 
-        <h3>3. Basic Math Operations & Integer Division Pitfalls</h3>
+        <h3>4. Basic Math Operations & Integer Division Pitfalls</h3>
         <p>Java supports standard arithmetic (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>). However, **Integer Division** is a frequent source of bugs for beginners:</p>
 
         <pre><code><span class="com">// INCORRECT: Dividing two integers drops the decimal completely!</span>
@@ -554,7 +575,7 @@
         s2q1: "9d5ed678fe57bcca610140957afab571", // B
         s2q2: "9d5ed678fe57bcca610140957afab571", // B
         s2q3: "0d61f8370cad1d412f80b84d143e1257", // C
-        s3q1: "7fc15c68f96f0113264627258a18357a", // A (FIXED: Correctly hashes to 'A')
+        s3q1: "7fc15c68f96f0113264627258a18357a", // A
         s3q2: "9d5ed678fe57bcca610140957afab571", // B
         s3q3: "9d5ed678fe57bcca610140957afab571"  // B
     };
