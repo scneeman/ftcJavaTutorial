@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FTC Java Foundations: Stages 1-3</title>
-    <!-- CryptoJS MD5 Library for Answer Obfuscation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <style>
         :root {
             --bg-color: #1e1e2e;
@@ -18,13 +16,13 @@
             --code-bg: #181825;
             
             /* IDE Syntax Colors */
-            --syn-keyword: #cf9fff;   /* Reserved keywords */
-            --syn-type: #4682b4;      /* Object Types */
-            --syn-string: #a6e3a1;    /* String literals */
-            --syn-number: #fab387;    /* Numbers */
-            --syn-comment: #6c7086;   /* Comments */
-            --syn-anno: #f9e2af;      /* Annotations */
-            --syn-var: #89dceb;       /* Variable names */
+            --syn-keyword: #cf9fff;
+            --syn-type: #4682b4;
+            --syn-string: #a6e3a1;
+            --syn-number: #fab387;
+            --syn-comment: #6c7086;
+            --syn-anno: #f9e2af;
+            --syn-var: #89dceb;
         }
 
         body {
@@ -53,7 +51,6 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
-        /* Callout Box for Key Concepts */
         .callout {
             background-color: var(--code-bg);
             border-left: 4px solid var(--accent-color);
@@ -62,7 +59,6 @@
             border-radius: 0 6px 6px 0;
         }
 
-        /* Tables for Keywords and Hardware */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -83,7 +79,6 @@
             color: var(--accent-color);
         }
 
-        /* Breakdown Cards for Method Header Explanation */
         .breakdown-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -104,7 +99,6 @@
             margin-bottom: 5px;
         }
 
-        /* IDE Code Block Styling */
         pre {
             background-color: var(--code-bg);
             padding: 16px;
@@ -118,7 +112,6 @@
 
         code { font-family: inherit; }
 
-        /* Syntax Classes */
         .kwd { color: var(--syn-keyword); font-weight: bold; }
         .typ { color: var(--syn-type); font-weight: bold; }
         .str { color: var(--syn-string); }
@@ -478,14 +471,13 @@
     <!-- STAGE 3 -->
     <div class="stage-card">
         <h2>Stage 3: The FTC Iterative `OpMode` Lifecycle</h2>
-        <p>Your team is using the **Iterative `OpMode`** structure for both TeleOp and Autonomous. Unlike `LinearOpMode`, an `OpMode` is event-driven and runs continuously inside built-in loop routines (~50–100 times per second).</p>
+        <p>In FTC Java, an **Iterative `OpMode`** is event-driven and runs continuously inside built-in loop routines (~50–100 times per second).</p>
 
-        <h3>The 4 Core Life-Cycle Methods</h3>
+        <h3>The Core Life-Cycle Methods</h3>
         <ul>
             <li><code>init()</code>: Runs <strong>once</strong> when the driver hits INIT on the Driver Station. Use this to hardware map motors, set directions, and initialize sensors.</li>
-            <li><code>init_loop()</code>: Loops continuously while waiting for the driver to press PLAY. Great for updating vision processing or selecting autonomous paths.</li>
-            <li><code>start()</code>: Runs <strong>once</strong> when the driver presses the PLAY button.</li>
-            <li><code>loop()</code>: Loops continuously after PLAY is pressed until the match timer runs out or STOP is pressed. This is where gamepad reading and state machine execution happen.</li>
+            <li><code>start()</code>: Runs <strong>once</strong> when the driver presses the PLAY button. Use this to reset encoders or start timers right as the match begins.</li>
+            <li><code>loop()</code>: Loops continuously after PLAY is pressed until the match timer runs out or STOP is pressed. This is where gamepad readings and motor updates occur.</li>
         </ul>
 
         <h3>Complete Iterative `OpMode` Template</h3>
@@ -509,12 +501,6 @@
         <span class="vrb">rightDrive</span> = <span class="vrb">hardwareMap</span>.get(<span class="typ">DcMotor</span>.<span class="kwd">class</span>, <span class="str">"right_drive"</span>);
 
         <span class="vrb">telemetry</span>.addData(<span class="str">"Status"</span>, <span class="str">"Initialized & Ready!"</span>);
-    }
-
-    <span class="ann">@Override</span>
-    <span class="kwd">public void</span> init_loop() {
-        <span class="com">// Runs repeatedly between INIT and PLAY</span>
-        <span class="vrb">telemetry</span>.addData(<span class="str">"Status"</span>, <span class="str">"Waiting for driver to press PLAY..."</span>);
     }
 
     <span class="ann">@Override</span>
@@ -553,12 +539,12 @@
 
             <!-- Q2 -->
             <div class="question" id="s3q2">
-                <p>2. Which method inside an iterative `OpMode` runs continuously BEFORE the driver presses PLAY?</p>
+                <p>2. In FTC Java, pushed FULL UP on the gamepad joystick returns which value for `gamepad1.left_stick_y`?</p>
                 <div class="options">
-                    <label><input type="radio" name="s3q2" value="A" onchange="checkAnswer('s3q2', this)"> init()</label>
-                    <label><input type="radio" name="s3q2" value="B" onchange="checkAnswer('s3q2', this)"> init_loop()</label>
-                    <label><input type="radio" name="s3q2" value="C" onchange="checkAnswer('s3q2', this)"> loop()</label>
-                    <label><input type="radio" name="s3q2" value="D" onchange="checkAnswer('s3q2', this)"> start()</label>
+                    <label><input type="radio" name="s3q2" value="A" onchange="checkAnswer('s3q2', this)"> +1.0</label>
+                    <label><input type="radio" name="s3q2" value="B" onchange="checkAnswer('s3q2', this)"> -1.0</label>
+                    <label><input type="radio" name="s3q2" value="C" onchange="checkAnswer('s3q2', this)"> 0.0</label>
+                    <label><input type="radio" name="s3q2" value="D" onchange="checkAnswer('s3q2', this)"> +100</label>
                 </div>
                 <span class="attempts-left" id="s3q2-attempts">2 attempts remaining</span>
                 <div class="feedback" id="s3q2-feedback"></div>
@@ -581,24 +567,28 @@
 </div>
 
 <script>
-    // Obfuscated Correct Answers (MD5 Hashes of 'A', 'B', 'C', or 'D')
-    // A -> "7fc15c68f96f0113264627258a18357a"
-    // B -> "9d5ed678fe57bcca610140957afab571"
-    // C -> "0d61f8370cad1d412f80b84d143e1257"
-    // D -> "f623e75af30e62bbd73d6df5b50bb7b5"
-    
-    // Corrected Hash Mapping
-    const hashedAnswers = {
-        s1q1: "9d5ed678fe57bcca610140957afab571", 
-        s1q2: "9d5ed678fe57bcca610140957afab571", 
-        s1q3: "9d5ed678fe57bcca610140957afab571", 
-        s1q4: "9d5ed678fe57bcca610140957afab571", 
-        s2q1: "9d5ed678fe57bcca610140957afab571", 
-        s2q2: "9d5ed678fe57bcca610140957afab571", 
-        s2q3: "0d61f8370cad1d412f80b84d143e1257", 
-        s3q1: "7fc15c68f96f0113264627258a18357a", 
-        s3q2: "9d5ed678fe57bcca610140957afab571", 
-        s3q3: "9d5ed678fe57bcca610140957afab571"  
+    // Native XOR-Base64 Decryption Helper
+    function decodeAnswer(encoded, key = "FTC2026") {
+        const raw = atob(encoded);
+        let result = '';
+        for (let i = 0; i < raw.length; i++) {
+            result += String.fromCharCode(raw.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+        }
+        return result;
+    }
+
+    // Obfuscated Correct Answers Key
+    const encryptedAnswers = {
+        s1q1: "Eg==", // B
+        s1q2: "Eg==", // B
+        s1q3: "Eg==", // B
+        s1q4: "Eg==", // B
+        s2q1: "Eg==", // B
+        s2q2: "Eg==", // B
+        s2q3: "EQ==", // C
+        s3q1: "FA==", // A
+        s3q2: "Eg==", // B
+        s3q3: "Eg=="  // B
     };
 
     // Tracking remaining attempts per question
@@ -615,21 +605,17 @@
         const attemptsEl = document.getElementById(`${qId}-attempts`);
         const allRadios = document.querySelectorAll(`input[name="${qId}"]`);
 
-        // Disable selected option so it cannot be re-clicked
         selectedRadio.disabled = true;
         attempts[qId]--;
 
-        // Hash user selection and compare against secure hash
-        const userSelectedValue = selectedRadio.value;
-        const userSelectionHash = CryptoJS.MD5(userSelectedValue).toString();
+        // Decode obfuscated correct answer on choice
+        const correctAnswer = decodeAnswer(encryptedAnswers[qId]);
 
-        if (userSelectionHash === hashedAnswers[qId]) {
+        if (selectedRadio.value === correctAnswer) {
             feedbackEl.innerText = "Correct! Great job.";
             feedbackEl.className = "feedback correct";
             feedbackEl.style.display = "block";
             attemptsEl.innerText = "";
-            
-            // Disable all remaining options since answer is found
             allRadios.forEach(r => r.disabled = true);
         } else {
             if (attempts[qId] > 0) {
@@ -642,8 +628,6 @@
                 feedbackEl.className = "feedback incorrect";
                 feedbackEl.style.display = "block";
                 attemptsEl.innerText = "0 attempts remaining";
-                
-                // Disable remaining options
                 allRadios.forEach(r => r.disabled = true);
             }
         }
