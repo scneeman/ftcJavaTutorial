@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FTC Java Foundations: Stages 1-3</title>
+    <title>FTC Java Foundations: Stages 1-4</title>
     <style>
         :root {
             --bg-color: #1e1e2e;
@@ -178,7 +178,7 @@
 <body>
 
 <div class="container">
-    <h1>FTC Java Foundations: Stages 1–3</h1>
+    <h1>FTC Java Foundations: Stages 1–4</h1>
     <p>Welcome! Complete each stage's reading module and pass the check for understanding. Selecting an answer checks it immediately. You get <strong>2 attempts</strong> per question.</p>
 
     <!-- STAGE 1 -->
@@ -327,8 +327,8 @@
                 <p>2. What value is stored in `gearRatio` after running: `double gearRatio = 3 / 4;`?</p>
                 <div class="options">
                     <label><input type="radio" name="s1q2" value="A" onchange="checkAnswer('s1q2', this)"> 0.75</label>
-                    <label><input type="radio" name="s1q2" value="B" onchange="checkAnswer('s1q2', this)"> 0.0</label>
-                    <label><input type="radio" name="s1q2" value="C" onchange="checkAnswer('s1q2', this)"> 1.0</label>
+                    <label><input type="radio" name="s1q2" value="B" onchange="checkAnswer('s1q2', this)"> 1.0</label>
+                    <label><input type="radio" name="s1q2" value="C" onchange="checkAnswer('s1q2', this)"> 0.0</label>
                     <label><input type="radio" name="s1q2" value="D" onchange="checkAnswer('s1q2', this)"> 0.7500</label>
                 </div>
                 <span class="attempts-left" id="s1q2-attempts">2 attempts remaining</span>
@@ -339,8 +339,8 @@
             <div class="question" id="s1q3">
                 <p>3. Why is `Math.toRadians()` frequently called when dealing with IMU gyro readings in autonomous code?</p>
                 <div class="options">
-                    <label><input type="radio" name="s1q3" value="A" onchange="checkAnswer('s1q3', this)"> Because Control Hub hardware only measures speed in radians.</label>
-                    <label><input type="radio" name="s1q3" value="B" onchange="checkAnswer('s1q3', this)"> Java trigonometric functions and pathing libraries (like Pedro Pathing) expect angles in radians.</label>
+                    <label><input type="radio" name="s1q3" value="A" onchange="checkAnswer('s1q3', this)"> Java trigonometric functions and pathing libraries (like Pedro Pathing) expect angles in radians.</label>
+                    <label><input type="radio" name="s1q3" value="B" onchange="checkAnswer('s1q3', this)"> Because Control Hub hardware only measures speed in radians.</label>
                     <label><input type="radio" name="s1q3" value="C" onchange="checkAnswer('s1q3', this)"> To prevent integer division errors when calculating power.</label>
                     <label><input type="radio" name="s1q3" value="D" onchange="checkAnswer('s1q3', this)"> To automatically reverse motor directions.</label>
                 </div>
@@ -353,9 +353,9 @@
                 <p>4. What must be called after `telemetry.addData()` to ensure messages update immediately on the Driver Station screen?</p>
                 <div class="options">
                     <label><input type="radio" name="s1q4" value="A" onchange="checkAnswer('s1q4', this)"> telemetry.send()</label>
-                    <label><input type="radio" name="s1q4" value="B" onchange="checkAnswer('s1q4', this)"> telemetry.update()</label>
-                    <label><input type="radio" name="s1q4" value="C" onchange="checkAnswer('s1q4', this)"> telemetry.clear()</label>
-                    <label><input type="radio" name="s1q4" value="D" onchange="checkAnswer('s1q4', this)"> System.out.println()</label>
+                    <label><input type="radio" name="s1q4" value="B" onchange="checkAnswer('s1q4', this)"> telemetry.clear()</label>
+                    <label><input type="radio" name="s1q4" value="C" onchange="checkAnswer('s1q4', this)"> System.out.println()</label>
+                    <label><input type="radio" name="s1q4" value="D" onchange="checkAnswer('s1q4', this)"> telemetry.update()</label>
                 </div>
                 <span class="attempts-left" id="s1q4-attempts">2 attempts remaining</span>
                 <div class="feedback" id="s1q4-feedback"></div>
@@ -413,13 +413,8 @@
     <span class="kwd">public void</span> configureArm(<span class="typ">DcMotor</span> <span class="vrb">motorFromMap</span>) {
         <span class="vrb">armMotor</span> = <span class="vrb">motorFromMap</span>;
         
-        <span class="com">// Reverse direction if mechanical gearing flips movement</span>
         <span class="vrb">armMotor</span>.setDirection(<span class="typ">DcMotorSimple</span>.<span class="typ">Direction</span>.REVERSE);
-        
-        <span class="com">// Reset encoder tick counter to 0</span>
         <span class="vrb">armMotor</span>.setMode(<span class="typ">DcMotor</span>.<span class="typ">RunMode</span>.STOP_AND_RESET_ENCODER);
-        
-        <span class="com">// Set motor to run using raw power control</span>
         <span class="vrb">armMotor</span>.setMode(<span class="typ">DcMotor</span>.<span class="typ">RunMode</span>.RUN_WITHOUT_ENCODER);
     }
 }</code></pre>
@@ -432,8 +427,8 @@
                 <p>1. What parameter range does `servo.setPosition()` accept?</p>
                 <div class="options">
                     <label><input type="radio" name="s2q1" value="A" onchange="checkAnswer('s2q1', this)"> -1.0 to 1.0</label>
-                    <label><input type="radio" name="s2q1" value="B" onchange="checkAnswer('s2q1', this)"> 0.0 to 1.0</label>
-                    <label><input type="radio" name="s2q1" value="C" onchange="checkAnswer('s2q1', this)"> 0 to 360</label>
+                    <label><input type="radio" name="s2q1" value="B" onchange="checkAnswer('s2q1', this)"> 0 to 360</label>
+                    <label><input type="radio" name="s2q1" value="C" onchange="checkAnswer('s2q1', this)"> 0.0 to 1.0</label>
                     <label><input type="radio" name="s2q1" value="D" onchange="checkAnswer('s2q1', this)"> 0 to 1440</label>
                 </div>
                 <span class="attempts-left" id="s2q1-attempts">2 attempts remaining</span>
@@ -444,8 +439,8 @@
             <div class="question" id="s2q2">
                 <p>2. Which `DcMotor.RunMode` must be executed to reset an encoder count back to zero?</p>
                 <div class="options">
-                    <label><input type="radio" name="s2q2" value="A" onchange="checkAnswer('s2q2', this)"> RUN_USING_ENCODER</label>
-                    <label><input type="radio" name="s2q2" value="B" onchange="checkAnswer('s2q2', this)"> STOP_AND_RESET_ENCODER</label>
+                    <label><input type="radio" name="s2q2" value="A" onchange="checkAnswer('s2q2', this)"> STOP_AND_RESET_ENCODER</label>
+                    <label><input type="radio" name="s2q2" value="B" onchange="checkAnswer('s2q2', this)"> RUN_USING_ENCODER</label>
                     <label><input type="radio" name="s2q2" value="C" onchange="checkAnswer('s2q2', this)"> RESET_ALL_MOTORS</label>
                     <label><input type="radio" name="s2q2" value="D" onchange="checkAnswer('s2q2', this)"> RUN_TO_POSITION</label>
                 </div>
@@ -459,8 +454,8 @@
                 <div class="options">
                     <label><input type="radio" name="s2q3" value="A" onchange="checkAnswer('s2q3', this)"> double</label>
                     <label><input type="radio" name="s2q3" value="B" onchange="checkAnswer('s2q3', this)"> int</label>
-                    <label><input type="radio" name="s2q3" value="C" onchange="checkAnswer('s2q3', this)"> boolean</label>
-                    <label><input type="radio" name="s2q3" value="D" onchange="checkAnswer('s2q3', this)"> String</label>
+                    <label><input type="radio" name="s2q3" value="C" onchange="checkAnswer('s2q3', this)"> String</label>
+                    <label><input type="radio" name="s2q3" value="D" onchange="checkAnswer('s2q3', this)"> boolean</label>
                 </div>
                 <span class="attempts-left" id="s2q3-attempts">2 attempts remaining</span>
                 <div class="feedback" id="s2q3-feedback"></div>
@@ -470,8 +465,129 @@
 
     <!-- STAGE 3 -->
     <div class="stage-card">
-        <h2>Stage 3: The FTC Iterative `OpMode` Lifecycle</h2>
-        <p>In FTC Java, an **Iterative `OpMode`** is event-driven and runs continuously inside built-in loop routines (~50–100 times per second).</p>
+        <h2>Stage 3: Finite State Machines (FSM) & Autonomous Architecture</h2>
+        <p>In autonomous programming, using linear code with <code>sleep()</code> commands stops the main execution thread, preventing sensor updates and causing sluggish response times. A non-blocking <strong>Finite State Machine (FSM)</strong> allows the robot to loop continuously while progressing through multi-step autonomous routines.</p>
+
+        <h3>Core Concepts of an FSM</h3>
+        <ul>
+            <li><strong>State:</strong> An <code>enum</code> defining explicit conditions (e.g., <code>DRIVE_TO_SCORE</code>, <code>DROP_SAMPLE</code>, <code>PARK</code>).</li>
+            <li><strong>Transitions:</strong> Non-blocking checks (e.g., timer checks or follower path completion) that move execution to the next state without locking up the loop.</li>
+            <li><strong>Switch Control:</strong> A <code>switch(currentState)</code> block in `loop()` executes only the actions for the active step.</li>
+        </ul>
+
+        <h3>Autonomous FSM Template</h3>
+        <pre><code><span class="kwd">package</span> org.firstinspires.ftc.teamcode;
+
+<span class="kwd">import</span> com.qualcomm.robotcore.eventloop.opmode.<span class="typ">Autonomous</span>;
+<span class="kwd">import</span> com.qualcomm.robotcore.eventloop.opmode.<span class="typ">OpMode</span>;
+<span class="kwd">import</span> com.qualcomm.robotcore.util.<span class="typ">ElapsedTime</span>;
+
+<span class="ann">@Autonomous</span>(name = <span class="str">"FSM Autonomous Base"</span>, group = <span class="str">"Autonomous"</span>)
+<span class="kwd">public class</span> <span class="typ">AutonomousFSM</span> <span class="kwd">extends</span> <span class="typ">OpMode</span> {
+
+    <span class="kwd">public enum</span> <span class="typ">AutoState</span> {
+        <span class="vrb">DRIVE_TO_SCORE</span>,
+        <span class="vrb">WAIT_FOR_SCORE</span>,
+        <span class="vrb">PARK</span>,
+        <span class="vrb">IDLE</span>
+    }
+
+    <span class="kwd">private</span> <span class="typ">AutoState</span> <span class="vrb">currentState</span> = <span class="typ">AutoState</span>.<span class="vrb">DRIVE_TO_SCORE</span>;
+    <span class="kwd">private</span> <span class="typ">ElapsedTime</span> <span class="vrb">stateTimer</span> = <span class="kwd">new</span> <span class="typ">ElapsedTime</span>();
+
+    <span class="ann">@Override</span>
+    <span class="kwd">public void</span> init() {
+        <span class="vrb">telemetry</span>.addData(<span class="str">"Status"</span>, <span class="str">"Auto Initialized"</span>);
+    }
+
+    <span class="ann">@Override</span>
+    <span class="kwd">public void</span> start() {
+        <span class="vrb">stateTimer</span>.reset();
+    }
+
+    <span class="ann">@Override</span>
+    <span class="kwd">public void</span> loop() {
+        <span class="kwd">switch</span> (<span class="vrb">currentState</span>) {
+            <span class="kwd">case</span> <span class="vrb">DRIVE_TO_SCORE</span>:
+                <span class="com">// Command drive base movement here</span>
+                <span class="kwd">if</span> (<span class="vrb">stateTimer</span>.seconds() > <span class="num">3.0</span>) {
+                    <span class="vrb">stateTimer</span>.reset();
+                    <span class="vrb">currentState</span> = <span class="typ">AutoState</span>.<span class="vrb">WAIT_FOR_SCORE</span>;
+                }
+                <span class="kwd">break</span>;
+
+            <span class="kwd">case</span> <span class="vrb">WAIT_FOR_SCORE</span>:
+                <span class="com">// Run scoring mechanism</span>
+                <span class="kwd">if</span> (<span class="vrb">stateTimer</span>.seconds() > <span class="num">1.5</span>) {
+                    <span class="vrb">stateTimer</span>.reset();
+                    <span class="vrb">currentState</span> = <span class="typ">AutoState</span>.<span class="vrb">PARK</span>;
+                }
+                <span class="kwd">break</span>;
+
+            <span class="kwd">case</span> <span class="vrb">PARK</span>:
+                <span class="com">// Drive to park location</span>
+                <span class="kwd">if</span> (<span class="vrb">stateTimer</span>.seconds() > <span class="num">2.0</span>) {
+                    <span class="vrb">currentState</span> = <span class="typ">AutoState</span>.<span class="vrb">IDLE</span>;
+                }
+                <span class="kwd">break</span>;
+
+            <span class="kwd">case</span> <span class="vrb">IDLE</span>:
+                <span class="com">// Routine completed</span>
+                <span class="kwd">break</span>;
+        }
+
+        <span class="vrb">telemetry</span>.addData(<span class="str">"Current State"</span>, <span class="vrb">currentState</span>);
+    }
+}</code></pre>
+
+        <div class="quiz-container" id="quiz-stage3">
+            <h3>Stage 3 Quiz</h3>
+
+            <!-- Q1 -->
+            <div class="question" id="s3q1">
+                <p>1. Why is `sleep()` avoided in iterative autonomous routines in favor of a Finite State Machine?</p>
+                <div class="options">
+                    <label><input type="radio" name="s3q1" value="A" onchange="checkAnswer('s3q1', this)"> `sleep()` halts thread execution, blocking sensor updates and telemetry refreshes.</label>
+                    <label><input type="radio" name="s3q1" value="B" onchange="checkAnswer('s3q1', this)"> Java does not support `sleep()` inside autonomous classes.</label>
+                    <label><input type="radio" name="s3q1" value="C" onchange="checkAnswer('s3q1', this)"> Motors automatically reset power to 0 whenever `sleep()` is called.</label>
+                    <label><input type="radio" name="s3q1" value="D" onchange="checkAnswer('s3q1', this)"> `sleep()` drains controller battery faster.</label>
+                </div>
+                <span class="attempts-left" id="s3q1-attempts">2 attempts remaining</span>
+                <div class="feedback" id="s3q1-feedback"></div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question" id="s3q2">
+                <p>2. Which Java construct is ideal for defining the distinct states in an FSM?</p>
+                <div class="options">
+                    <label><input type="radio" name="s3q2" value="A" onchange="checkAnswer('s3q2', this)"> `ArrayList`</label>
+                    <label><input type="radio" name="s3q2" value="B" onchange="checkAnswer('s3q2', this)"> `enum`</label>
+                    <label><input type="radio" name="s3q2" value="C" onchange="checkAnswer('s3q2', this)"> `double`</label>
+                    <label><input type="radio" name="s3q2" value="D" onchange="checkAnswer('s3q2', this)"> `interface`</label>
+                </div>
+                <span class="attempts-left" id="s3q2-attempts">2 attempts remaining</span>
+                <div class="feedback" id="s3q2-feedback"></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question" id="s3q3">
+                <p>3. Why is a Finite State Machine (FSM) architecture preferred over nested `if-else` statements for complex mechanism sequences?</p>
+                <div class="options">
+                    <label><input type="radio" name="s3q3" value="A" onchange="checkAnswer('s3q3', this)"> It forces motors to run at maximum power during sequence execution.</label>
+                    <label><input type="radio" name="s3q3" value="B" onchange="checkAnswer('s3q3', this)"> It eliminates the need for hardware mapping in the `init()` method.</label>
+                    <label><input type="radio" name="s3q3" value="C" onchange="checkAnswer('s3q3', this)"> It cleanly isolates distinct operational states and manages transitions without freezing or blocking the main execution loop.</label>
+                    <label><input type="radio" name="s3q3" value="D" onchange="checkAnswer('s3q3', this)"> Java requires an FSM for all motor encoder operations.</label>
+                </div>
+                <span class="attempts-left" id="s3q3-attempts">2 attempts remaining</span>
+                <div class="feedback" id="s3q3-feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="stage-card">
+        <h2>Stage 4: TeleOp Control, Gamepad Input & Lifecycle</h2>
+        <p>In FTC Java, an **Iterative `OpMode`** for TeleOp is event-driven and runs continuously inside built-in loop routines (~50–100 times per second) to translate driver inputs into physical motor commands.</p>
 
         <h3>The Core Life-Cycle Methods</h3>
         <ul>
@@ -480,7 +596,7 @@
             <li><code>loop()</code>: Loops continuously after PLAY is pressed until the match timer runs out or STOP is pressed. This is where gamepad readings and motor updates occur.</li>
         </ul>
 
-        <h3>Complete Iterative `OpMode` Template</h3>
+        <h3>Iterative `OpMode` & Joystick Processing Template</h3>
 
         <pre><code><span class="kwd">package</span> org.firstinspires.ftc.teamcode;
 
@@ -496,7 +612,6 @@
 
     <span class="ann">@Override</span>
     <span class="kwd">public void</span> init() {
-        <span class="com">// Hardware Mapping (Matches Control Hub config name)</span>
         <span class="vrb">leftDrive</span>  = <span class="vrb">hardwareMap</span>.get(<span class="typ">DcMotor</span>.<span class="kwd">class</span>, <span class="str">"left_drive"</span>);
         <span class="vrb">rightDrive</span> = <span class="vrb">hardwareMap</span>.get(<span class="typ">DcMotor</span>.<span class="kwd">class</span>, <span class="str">"right_drive"</span>);
 
@@ -505,13 +620,11 @@
 
     <span class="ann">@Override</span>
     <span class="kwd">public void</span> start() {
-        <span class="com">// Reset timers or encoders once match begins</span>
         <span class="vrb">telemetry</span>.addData(<span class="str">"Status"</span>, <span class="str">"Match Started!"</span>);
     }
 
     <span class="ann">@Override</span>
     <span class="kwd">public void</span> loop() {
-        <span class="com">// Gamepad joysticks return inverted Y (-1.0 is full UP)</span>
         <span class="kwd">double</span> <span class="vrb">drivePower</span> = -<span class="vrb">gamepad1</span>.<span class="vrb">left_stick_y</span>;
         
         <span class="vrb">leftDrive</span>.setPower(<span class="vrb">drivePower</span>);
@@ -521,81 +634,85 @@
     }
 }</code></pre>
 
-        <div class="quiz-container" id="quiz-stage3">
-            <h3>Stage 3 Quiz</h3>
+        <div class="quiz-container" id="quiz-stage4">
+            <h3>Stage 4 Quiz</h3>
 
             <!-- Q1 -->
-            <div class="question" id="s3q1">
+            <div class="question" id="s4q1">
                 <p>1. What string parameter must be passed to `hardwareMap.get()`?</p>
                 <div class="options">
-                    <label><input type="radio" name="s3q1" value="A" onchange="checkAnswer('s3q1', this)"> The exact device name configured on the Control Hub Driver Station configuration</label>
-                    <label><input type="radio" name="s3q1" value="B" onchange="checkAnswer('s3q1', this)"> The variable name declared in Java</label>
-                    <label><input type="radio" name="s3q1" value="C" onchange="checkAnswer('s3q1', this)"> The IP address of the Control Hub</label>
-                    <label><input type="radio" name="s3q1" value="D" onchange="checkAnswer('s3q1', this)"> The physical port number on the Control Hub</label>
+                    <label><input type="radio" name="s4q1" value="A" onchange="checkAnswer('s4q1', this)"> The exact device name configured on the Control Hub Driver Station configuration</label>
+                    <label><input type="radio" name="s4q1" value="B" onchange="checkAnswer('s4q1', this)"> The variable name declared in Java</label>
+                    <label><input type="radio" name="s4q1" value="C" onchange="checkAnswer('s4q1', this)"> The IP address of the Control Hub</label>
+                    <label><input type="radio" name="s4q1" value="D" onchange="checkAnswer('s4q1', this)"> The physical port number on the Control Hub</label>
                 </div>
-                <span class="attempts-left" id="s3q1-attempts">2 attempts remaining</span>
-                <div class="feedback" id="s3q1-feedback"></div>
+                <span class="attempts-left" id="s4q1-attempts">2 attempts remaining</span>
+                <div class="feedback" id="s4q1-feedback"></div>
             </div>
 
             <!-- Q2 -->
-            <div class="question" id="s3q2">
-                <p>2. In FTC Java, pushed FULL UP on the gamepad joystick returns which value for `gamepad1.left_stick_y`?</p>
+            <div class="question" id="s4q2">
+                <p>2. Why is the y joystick value multiplied by -1 when setting motor power (e.g., `double drive = -gamepad1.left_stick_y`)?</p>
                 <div class="options">
-                    <label><input type="radio" name="s3q2" value="A" onchange="checkAnswer('s3q2', this)"> +1.0</label>
-                    <label><input type="radio" name="s3q2" value="B" onchange="checkAnswer('s3q2', this)"> -1.0</label>
-                    <label><input type="radio" name="s3q2" value="C" onchange="checkAnswer('s3q2', this)"> 0.0</label>
-                    <label><input type="radio" name="s3q2" value="D" onchange="checkAnswer('s3q2', this)"> +100</label>
+                    <label><input type="radio" name="s4q2" value="A" onchange="checkAnswer('s4q2', this)"> To convert the integer value from the gamepad directly into a double.</label>
+                    <label><input type="radio" name="s4q2" value="B" onchange="checkAnswer('s4q2', this)"> Standard Android SDK gamepad joysticks return negative values when pushed forward (upward).</label>
+                    <label><input type="radio" name="s4q2" value="C" onchange="checkAnswer('s4q2', this)"> To flip the controls when driving in reverse direction mode.</label>
+                    <label><input type="radio" name="s4q2" value="D" onchange="checkAnswer('s4q2', this)"> To prevent joystick drift when the stick is resting in center position.</label>
                 </div>
-                <span class="attempts-left" id="s3q2-attempts">2 attempts remaining</span>
-                <div class="feedback" id="s3q2-feedback"></div>
+                <span class="attempts-left" id="s4q2-attempts">2 attempts remaining</span>
+                <div class="feedback" id="s4q2-feedback"></div>
             </div>
 
             <!-- Q3 -->
-            <div class="question" id="s3q3">
-                <p>3. Why is `OpMode` well-suited for autonomous state machines compared to a single linear script?</p>
+            <div class="question" id="s4q3">
+                <p>3. Which method in an iterative `OpMode` is called continuously until the user stops execution?</p>
                 <div class="options">
-                    <label><input type="radio" name="s3q3" value="A" onchange="checkAnswer('s3q3', this)"> It automatically turns off all motors when autonomous ends.</label>
-                    <label><input type="radio" name="s3q3" value="B" onchange="checkAnswer('s3q3', this)"> The `loop()` method constantly refreshes motor outputs and sensor readings every ~10–20ms, preventing the robot from freezing.</label>
-                    <label><input type="radio" name="s3q3" value="C" onchange="checkAnswer('s3q3', this)"> It bypasses the need to perform hardware mapping.</label>
-                    <label><input type="radio" name="s3q3" value="D" onchange="checkAnswer('s3q3', this)"> It forces motors to run twice as fast.</label>
+                    <label><input type="radio" name="s4q3" value="A" onchange="checkAnswer('s4q3', this)"> init()</label>
+                    <label><input type="radio" name="s4q3" value="B" onchange="checkAnswer('s4q3', this)"> start()</label>
+                    <label><input type="radio" name="s4q3" value="C" onchange="checkAnswer('s4q3', this)"> loop()</label>
+                    <label><input type="radio" name="s4q3" value="D" onchange="checkAnswer('s4q3', this)"> runOpMode()</label>
                 </div>
-                <span class="attempts-left" id="s3q3-attempts">2 attempts remaining</span>
-                <div class="feedback" id="s3q3-feedback"></div>
+                <span class="attempts-left" id="s4q3-attempts">2 attempts remaining</span>
+                <div class="feedback" id="s4q3-feedback"></div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    // Native XOR-Base64 Decryption Helper
-    function decodeAnswer(encoded, key = "FTC2026") {
-        const raw = atob(encoded);
+    // Clean Hex-XOR Decryption Helper
+    function decodeAnswer(hexEncoded, key = "FTC2026") {
         let result = '';
-        for (let i = 0; i < raw.length; i++) {
-            result += String.fromCharCode(raw.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+        for (let i = 0; i < hexEncoded.length; i += 2) {
+            const charCode = parseInt(hexEncoded.substr(i, 2), 16);
+            result += String.fromCharCode(charCode ^ key.charCodeAt((i / 2) % key.length));
         }
         return result;
     }
 
-    // Obfuscated Correct Answers Key
+    // Obfuscated Hex Keys for correct answers
     const encryptedAnswers = {
-        s1q1: "Eg==", 
-        s1q2: "Eg==", 
-        s1q3: "Eg==", 
-        s1q4: "Eg==", 
-        s2q1: "Eg==", 
-        s2q2: "Eg==", 
-        s2q3: "EQ==", 
-        s3q1: "FA==", 
-        s3q2: "Eg==", 
-        s3q3: "Eg=="  
+        s1q1: "04", // Encodes "B"
+        s1q2: "05", // Encodes "C"
+        s1q3: "07", // Encodes "A"
+        s1q4: "02", // Encodes "D"
+        s2q1: "05", // Encodes "C"
+        s2q2: "07", // Encodes "A"
+        s2q3: "02", // Encodes "D"
+        s3q1: "07", // Encodes "A"
+        s3q2: "04", // Encodes "B"
+        s3q3: "05", // Encodes "C"
+        s4q1: "07", // Encodes "A"
+        s4q2: "04", // Encodes "B"
+        s4q3: "05"  // Encodes "C"
     };
 
     // Tracking remaining attempts per question
     const attempts = {
         s1q1: 2, s1q2: 2, s1q3: 2, s1q4: 2,
         s2q1: 2, s2q2: 2, s2q3: 2,
-        s3q1: 2, s3q2: 2, s3q3: 2
+        s3q1: 2, s3q2: 2, s3q3: 2,
+        s4q1: 2, s4q2: 2, s4q3: 2
     };
 
     function checkAnswer(qId, selectedRadio) {
@@ -608,7 +725,7 @@
         selectedRadio.disabled = true;
         attempts[qId]--;
 
-        // Decode obfuscated correct answer on choice
+        // Decode obfuscated answer on click
         const correctAnswer = decodeAnswer(encryptedAnswers[qId]);
 
         if (selectedRadio.value === correctAnswer) {
